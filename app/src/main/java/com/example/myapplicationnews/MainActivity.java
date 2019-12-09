@@ -20,6 +20,21 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/*В кратце, я пишу парсер новостей с Яндекс-новости. На данный момент реализовано:
+1-Парсинг заголовков новостей
+2-Парсинг img заставок.
+3-Открывается второе активити с подробностями конкретной новости
+Не реализовано:
+1-Собственно подробности не отображаются, текста нет
+2- IMG заставки "сползают" на другие новости.
+
+Ведется работа по устранению недоделок.
+*/
+
+
+
+
+
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ParseAdapter adapter;
@@ -68,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             try{
                 String url = "https://yandex.ru/news/";
-                Document doc = Jsoup.connect(url).get();
+                Document doc = Jsoup.connect(url)
+                        .timeout(1000*7)
+                        .get();
                 Elements data = doc.select(".page-content__cell");
 
                 int size = data.size();

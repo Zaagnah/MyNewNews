@@ -55,10 +55,7 @@ public class DetailActivity extends AppCompatActivity {
 
         }
 
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-        }
+
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -68,15 +65,15 @@ public class DetailActivity extends AppCompatActivity {
                 String url = baseUrl + detailUrl;
 
                 Document doc = Jsoup.connect(url)
-                        .userAgent("Chrome/13.0.782.112 ")
-                        .referrer("http://www.google.com")
-                        .timeout(1000*10)
+                        //.userAgent("Chrome/13.0.782.112 ")
+                        //.referrer("https://yandex.ru/")
+                        //.timeout(1000*7)
                         //.ignoreHttpErrors(true)
                         .get();
 
-                Elements data = doc.select(".story__main");
+                Elements data = doc.select("div.doc__content");
 
-                detailString = data.select(".story__main")// ответ тут
+                detailString = data.select("div.doc__text")// ответ тут
                         .text();
 
             } catch (IOException e) {
