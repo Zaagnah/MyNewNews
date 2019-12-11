@@ -25,9 +25,8 @@ import java.util.ArrayList;
 2-Парсинг img заставок.
 3-Открывается второе активити с подробностями конкретной новости
 Не реализовано:
-1-Собственно подробности не отображаются, текста нет
-2- IMG заставки "сползают" на другие новости.
-
+1- IMG заставки "сползают" на другие новости.
+2- Нужно добавить скролл
 Ведется работа по устранению недоделок.
 */
 
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try{
-                String url = "https://yandex.ru/news/";
+                String url = "https://yandex.ru/news/region/Vladimir";
                 Document doc = Jsoup.connect(url)
                         .timeout(1000*7)
                         .get();
@@ -98,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                             .select("a")
                             .eq(i)
                             .text();
-
                     String detailUrl = data.select(".story__title")
                             .select("a")
                             .eq(i)

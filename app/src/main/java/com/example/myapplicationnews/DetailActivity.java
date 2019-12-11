@@ -60,7 +60,7 @@ public class DetailActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try{
-                String baseUrl = "https://yandex.ru/";
+                String baseUrl = "https://yandex.ru";
                 String detailUrl = getIntent().getStringExtra("detailUrl");
                 String url = baseUrl + detailUrl;
 
@@ -68,13 +68,14 @@ public class DetailActivity extends AppCompatActivity {
                         //.userAgent("Chrome/13.0.782.112 ")
                         //.referrer("https://yandex.ru/")
                         //.timeout(1000*7)
-                        //.ignoreHttpErrors(true)
+                       // .ignoreHttpErrors(true)
                         .get();
 
-                Elements data = doc.select("div.doc__content");
+                Elements data = doc.select(".doc__content");
 
-                detailString = data.select("div.doc__text")// ответ тут
+                detailString = data.select(".doc__text")
                         .text();
+
 
             } catch (IOException e) {
                 e.printStackTrace();
